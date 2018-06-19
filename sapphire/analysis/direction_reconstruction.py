@@ -4,6 +4,7 @@ import os
 import progressbar as pb
 from numpy import isnan, arcsin, arctan2, cos, floor, inf, sin, sqrt, tan, where, deg2rad, pi
 from numpy.random import uniform
+import zlib
 
 from sapphire import storage
 
@@ -299,7 +300,19 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
                     self.store_reconstructed_event(hisparc_event, kascade_event,
                                                    theta, phi)
 
+
         self.results_table.flush()
+
+    def _get_traces(self,hisparc_event):
+        trace_locations = hisparc_event['traces']
+        traces = []
+        for blob_idx in trace_locations:
+            blob = self.data.root.hisparc.cluster_kascade.station_601.blobs[blob_idx]
+            trace = zlib.decompress(blob)
+            trace = np.fromstring(trace,dtype=np.int32,sep=',')
+            traces.append(trace)
+        traces = np.array(traces, dtype=np.int32)
+        return traces
 
     def store_reconstructed_event(self, hisparc_event, kascade_event,
                                   reconstructed_theta, reconstructed_phi):
@@ -327,7 +340,7 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
         dst_row['reconstructed_theta'] = reconstructed_theta
         dst_row['reconstructed_phi'] = reconstructed_phi
         dst_row['min_n134'] = min(hisparc_event['n1'], hisparc_event['n3'], hisparc_event['n4'])
-        dst_row['traces'] = hisparc_event['traces_pulse']
+        dst_row['traces'] = self._get_traces(hisparc_event)
 
 
         dst_row['k_energy'] = kascade_event['energy']

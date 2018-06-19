@@ -424,4 +424,3 @@ class ProcessedHisparcEvent(tables.IsDescription):
     n2 = tables.Float32Col(dflt=-1)
     n3 = tables.Float32Col(dflt=-1)
     n4 = tables.Float32Col(dflt=-1)
-    traces_pulse = tables.Int32Col(shape=(2800,4), dflt=-1)

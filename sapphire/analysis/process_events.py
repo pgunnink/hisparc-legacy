@@ -248,7 +248,7 @@ class ProcessIndexedEvents(ProcessEvents):
 
     def _store_results_from_traces(self):
         table = self._tmp_events
-
+        
         timings = self.process_traces()
 
         for idx, event, (t1, t2, t3, t4) in izip(self.indexes, table.itersequence(
