@@ -390,6 +390,7 @@ class ReconstructedKascadeEvent(tables.IsDescription):
     reconstructed_theta = tables.Float32Col()
     reconstructed_phi = tables.Float32Col()
     min_n134 = tables.Float32Col()
+    traces = tables.Int32Col(shape=(2800, 4), dflt=-1)
 
     k_energy = tables.FloatCol()
     k_core_pos = tables.FloatCol(shape=2)
@@ -423,3 +424,4 @@ class ProcessedHisparcEvent(tables.IsDescription):
     n2 = tables.Float32Col(dflt=-1)
     n3 = tables.Float32Col(dflt=-1)
     n4 = tables.Float32Col(dflt=-1)
+    traces_pulse = tables.Int32Col(shape=(2800,4), dflt=-1)
