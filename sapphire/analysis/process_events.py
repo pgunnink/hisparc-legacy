@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/home/pieter/sapphire')
 import zlib
 from itertools import izip
 
