@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/home/pieter/sapphire')
+
 import logging
 from math import pi
 
