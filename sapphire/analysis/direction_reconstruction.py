@@ -327,6 +327,7 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
         dst_row['reconstructed_theta'] = reconstructed_theta
         dst_row['reconstructed_phi'] = reconstructed_phi
         dst_row['min_n134'] = min(hisparc_event['n1'], hisparc_event['n3'], hisparc_event['n4'])
+        import pdb;pdb.set_trace()
         dst_row['traces'] = hisparc_event['traces_pulse']
 
 

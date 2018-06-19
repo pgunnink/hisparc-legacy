@@ -12,6 +12,7 @@ from sapphire.analysis import process_events
 from sapphire import clusters
 from sapphire.analysis.direction_reconstruction import KascadeDirectionReconstruction
 
+import pdb
 
 class Master(object):
     hisparc_group = '/hisparc/cluster_kascade/station_601'
@@ -25,12 +26,12 @@ class Master(object):
         self.store_cluster_instance()
         self.read_and_store_kascade_data()
         self.search_for_coincidences()
-        self.process_events(process_events.ProcessIndexedEvents)
+        self.process_events(process_events.ProcessIndexedEvents,destination='events_with_traces')
         #self.process_events(process_events.ProcessIndexedEventsWithLINT,
         #                    'lint_events')
         #self.reconstruct_direction('events', '/reconstructions')
-        self.reconstruct_direction('events', '/reconstructions_offsets_new',
-                                   correct_offsets=True)
+        self.reconstruct_direction('events_with_traces', '/reconstructions_offsets_new3',
+                                   correct_offsets=False)
         #self.reconstruct_direction('lint_events', '/lint_reconstructions')
         #self.reconstruct_direction('lint_events', '/lint_reconstructions_offsets',
         #                           correct_offsets=True)
@@ -84,7 +85,8 @@ class Master(object):
 
         process = process_cls(self.data, self.hisparc_group, index)
         try:
-            process.process_and_store_results(destination)
+            process.process_and_store_results(destination, overwrite=True)
+            pdb.set_trace()
         except RuntimeError, msg:
             print msg
             return
@@ -115,5 +117,5 @@ if __name__ == '__main__':
 
     np.seterr(invalid='ignore', divide='ignore')
 
-    master = Master('kascade.h5', 'HiSparc-new.dat.gz')
+    master = Master('/mnt/shared/kascade.h5', '/mnt/shared/HiSparc-new.dat.gz')
     master.main()

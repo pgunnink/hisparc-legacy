@@ -250,7 +250,7 @@ class ProcessIndexedEvents(ProcessEvents):
         table = self._tmp_events
 
         timings = self.process_traces()
-
+        import pdb; pdb.set_trace()
         for idx, event, (t1, t2, t3, t4) in izip(self.indexes, table.itersequence(
                 self.indexes), timings):
             event['t1'] = t1
