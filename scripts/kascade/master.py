@@ -26,7 +26,7 @@ class Master(object):
         #self.process_events(process_events.ProcessIndexedEventsWithLINT,
         #                    'lint_events')
         #self.reconstruct_direction('events', '/reconstructions')
-        self.reconstruct_direction('events', '/reconstructions_offsets',
+        self.reconstruct_direction('events', '/reconstructions_offsets_new',
                                    correct_offsets=True)
         #self.reconstruct_direction('lint_events', '/lint_reconstructions')
         #self.reconstruct_direction('lint_events', '/lint_reconstructions_offsets',
