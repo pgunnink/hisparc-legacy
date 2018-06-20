@@ -1,5 +1,6 @@
 #!/data/hisparc/pgunnink/miniconda2/envs/hisparc-legacy/bin/python
 import sys
+sys.path.remove('/data/hisparc/pgunnink/sapphire/sapphire')
 sys.path.append('/data/hisparc/pgunnink/MachineLearning/Kascade/hisparc-legacy/')
 
 import logging
