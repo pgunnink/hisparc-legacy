@@ -316,6 +316,7 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
                 trace = np.concatenate((np.zeros(1200,),trace))
                 padded[i] = True
             traces.append(trace)
+            i+=1
         traces = np.array(traces, dtype=np.int32)
 
         return traces, padded
