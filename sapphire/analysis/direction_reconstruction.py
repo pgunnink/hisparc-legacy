@@ -313,7 +313,7 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
             trace = zlib.decompress(blob)
             trace = np.fromstring(trace,dtype=np.int32,sep=',')
             if len(trace)==2800:
-                trace = np.pad(trace, (1200,0), 'constant', constant_values=(0,0))
+                trace = np.concatenate((np.zeros(1200,),trace))
                 padded[i] = 1
             traces.append(trace)
         traces = np.array(traces, dtype=np.int32)
