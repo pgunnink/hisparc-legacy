@@ -1,5 +1,6 @@
+#!/data/hisparc/pgunnink/miniconda2/envs/hisparc-legacy/bin/python
 import sys
-sys.path.append('/home/pieter/sapphire')
+sys.path.append('/data/hisparc/pgunnink/MachineLearning/Kascade/hisparc-legacy/')
 
 import logging
 from math import pi
