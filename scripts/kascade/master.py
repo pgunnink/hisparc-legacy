@@ -102,7 +102,8 @@ class Master(object):
         try:
             reconstruction = KascadeDirectionReconstruction(self.data,
                                                             destination,
-                                                            min_n134=0.)
+                                                            min_n134=0.,
+                                                            overwrite=True)
         except RuntimeError, msg:
             print msg
             return
