@@ -390,7 +390,8 @@ class ReconstructedKascadeEvent(tables.IsDescription):
     reconstructed_theta = tables.Float32Col()
     reconstructed_phi = tables.Float32Col()
     min_n134 = tables.Float32Col()
-    traces = tables.Int32Col(shape=(2800, 4), dflt=-1)
+    traces = tables.Int32Col(shape=(4000, 4), dflt=-1)
+    traces_padded = tables.BoolCol(shape=4)
 
     k_energy = tables.FloatCol()
     k_core_pos = tables.FloatCol(shape=2)

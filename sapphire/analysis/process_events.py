@@ -257,7 +257,6 @@ class ProcessIndexedEvents(ProcessEvents):
             event['t2'] = t2
             event['t3'] = t3
             event['t4'] = t4
-            event['traces_pulse'] = self.get_traces_for_event_index(idx)
             event.update()
 
         table.flush()

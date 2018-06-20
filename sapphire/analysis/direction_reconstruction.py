@@ -306,13 +306,19 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
     def _get_traces(self,hisparc_event):
         trace_locations = hisparc_event['traces']
         traces = []
+        padded = np.zeros(4, dtype=bool)
+        i = 0
         for blob_idx in trace_locations:
             blob = self.data.root.hisparc.cluster_kascade.station_601.blobs[blob_idx]
             trace = zlib.decompress(blob)
             trace = np.fromstring(trace,dtype=np.int32,sep=',')
+            if len(trace)==2800:
+                trace = np.pad(trace, (1200,0), 'constant', constant_values=(0,0))
+                padded[i] = 1
             traces.append(trace)
         traces = np.array(traces, dtype=np.int32)
-        return traces
+
+        return traces, padded
 
     def store_reconstructed_event(self, hisparc_event, kascade_event,
                                   reconstructed_theta, reconstructed_phi):
@@ -340,6 +346,8 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
         dst_row['reconstructed_theta'] = reconstructed_theta
         dst_row['reconstructed_phi'] = reconstructed_phi
         dst_row['min_n134'] = min(hisparc_event['n1'], hisparc_event['n3'], hisparc_event['n4'])
+
+
         dst_row['traces'] = self._get_traces(hisparc_event)
 
 

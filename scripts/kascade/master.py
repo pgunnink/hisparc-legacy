@@ -115,5 +115,5 @@ if __name__ == '__main__':
 
     np.seterr(invalid='ignore', divide='ignore')
 
-    master = Master('kascade - kopie.h5', 'HiSparc-new.dat.gz')
+    master = Master('kascade2.h5', 'HiSparc-new.dat.gz')
     master.main()
