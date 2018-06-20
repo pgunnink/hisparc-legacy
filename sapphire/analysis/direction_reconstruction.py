@@ -314,7 +314,7 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
             trace = np.fromstring(trace,dtype=np.int32,sep=',')
             if len(trace)==2800:
                 trace = np.concatenate((np.zeros(1200,),trace))
-                padded[i] = 1
+                padded[i] = True
             traces.append(trace)
         traces = np.array(traces, dtype=np.int32)
 
@@ -347,8 +347,9 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
         dst_row['reconstructed_phi'] = reconstructed_phi
         dst_row['min_n134'] = min(hisparc_event['n1'], hisparc_event['n3'], hisparc_event['n4'])
 
-
-        dst_row['traces'] = self._get_traces(hisparc_event)
+        traces, padded = self._get_traces(hisparc_event)
+        dst_row['traces'] = traces
+        dst_row['traces_padded'] = padded
 
 
         dst_row['k_energy'] = kascade_event['energy']
