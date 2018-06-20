@@ -348,7 +348,7 @@ class KascadeDirectionReconstruction(DirectionReconstruction):
         dst_row['min_n134'] = min(hisparc_event['n1'], hisparc_event['n3'], hisparc_event['n4'])
 
         traces, padded = self._get_traces(hisparc_event)
-        dst_row['traces'] = traces
+        dst_row['traces'] = traces.T
         dst_row['traces_padded'] = padded
 
 
